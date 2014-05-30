@@ -18,6 +18,12 @@ ln -s ../../pre-commit.sh pre-commit
 cd -
 ```
 
+## Before running tests
+```
+In file, login.py located in package pages
+find method login and type in your pass and email
+```
+
 ## For running the tests
 
 ```
