@@ -46,8 +46,8 @@ class FacebookLogin(object):
         fills email and password fields,
         then clicks enter
         """
-        self.retrieve_email_field.send_keys('valentasdicevicius@gmail.com')  # Enter your facebook email
-        self.retrieve_password_field.send_keys('istorija')  # Enter your facebook password
+        self.retrieve_email_field.send_keys('')  # Enter your facebook email
+        self.retrieve_password_field.send_keys('')  # Enter your facebook password
         self.retrieve_password_field.send_keys(K.RETURN)
 
     def click_requests(self):
