@@ -1,10 +1,14 @@
-from selenium.webdriver.common.keys import Keys as K
+from selenium.webdriver.common.keys import Keys
+
+from config import secrets
+
+from pages.base import BasePage
 
 
-class FacebookLogin(object):
+class FacebookLogin(BasePage):
 
-    def __init__(self, webdriver):
-        self.webdriver = webdriver
+    def __init__(self):
+        self.webdriver = BasePage.webdriver
         self.url = 'http://facebook.com'
 
     @property
@@ -24,13 +28,6 @@ class FacebookLogin(object):
         return self.webdriver.find_element_by_name('pass')
 
     @property
-    def retrieve_friend_requests_button(self):
-        """
-        retrieves name by partial href
-        """
-        return self.webdriver.find_element_by_name('requests')
-
-    @property
     def retrieve_private_messages_button(self):
         """
         retrieves private messages button info
@@ -41,21 +38,16 @@ class FacebookLogin(object):
     def retrieve_notifications_button(self):
         return self.webdriver.find_element_by_name('notifications')
 
-    def login(self):
+    def login(self, username=None, password=None):
         """
         fills email and password fields,
         then clicks enter
         """
-        self.retrieve_email_field.send_keys('')  # Enter your facebook email
-        self.retrieve_password_field.send_keys('')  # Enter your facebook password
-        self.retrieve_password_field.send_keys(K.RETURN)
-
-    def click_requests(self):
-        """
-        clicks requests button
-        to show friend requests
-        """
-        self.retrieve_friend_requests_button.click()
+        username = username or secrets.username
+        password = password or secrets.password
+        self.retrieve_email_field.send_keys(username)
+        self.retrieve_password_field.send_keys(password)
+        self.retrieve_password_field.send_keys(Keys.RETURN)
 
     def click_private_messages(self):
         """
